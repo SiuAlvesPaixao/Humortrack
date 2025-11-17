@@ -28,4 +28,11 @@
     "vite": "^7.2.2",
     "vite-plugin-pwa": "^1.1.0"
   }
+
+  {
+  "scripts": {
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+
 }
