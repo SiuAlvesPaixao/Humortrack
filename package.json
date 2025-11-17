@@ -38,6 +38,11 @@
   {
   "scripts": {
     "build": "vite build --debug"
+  }, 
+
+  {
+  "engines": {
+    "node": ">=18.0.0"
   }
 
 }
