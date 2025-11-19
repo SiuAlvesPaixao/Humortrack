@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { guardarRegistro } from '../utils/almacenamiento';
+import MoodLegend from './MoodLegend'; // ← NUEVO: importación
 
 const etiquetasDisponibles = [
   'Sueño',
@@ -46,7 +47,7 @@ export default function RegistroHumor({ alGuardar }: { alGuardar: () => void }) 
       <h2 style={{ marginBottom: 24 }}>¿Cómo te sientes hoy?</h2>
       
       {/* Selector de humor */}
-      <div style={{ marginBottom: 32 }}>
+      <div style={{ marginBottom: 16 }}>
         <label style={{ display: 'block', marginBottom: 12, fontWeight: 500 }}>
           Nivel de ánimo
         </label>
@@ -65,6 +66,8 @@ export default function RegistroHumor({ alGuardar }: { alGuardar: () => void }) 
                 cursor: 'pointer',
                 transition: 'all 0.2s'
               }}
+              aria-pressed={valorSeleccionado === valor}
+              title={`Nivel ${valor}`}
             >
               {valor === 1 && '😢'}
               {valor === 2 && '😕'}
@@ -74,6 +77,11 @@ export default function RegistroHumor({ alGuardar }: { alGuardar: () => void }) 
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Leyenda emocional justo debajo de las caritas */}
+      <div style={{ marginBottom: 32 }}>
+        <MoodLegend />
       </div>
 
       {/* Nota opcional */}
@@ -118,6 +126,7 @@ export default function RegistroHumor({ alGuardar }: { alGuardar: () => void }) 
                 cursor: 'pointer',
                 transition: 'all 0.2s'
               }}
+              aria-pressed={etiquetasMarcadas.includes(etiqueta)}
             >
               {etiqueta}
             </button>
