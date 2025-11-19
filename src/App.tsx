@@ -1,8 +1,8 @@
 import { useState } from "react";
 import RegistroHumor from "./components/RegistroHumor";
 import NavBar from "./components/NavBar";
-import Analytics from "./pages/Analytics";         // si aún no lo tienes, crea después
-import { exportarCSV } from "./utils/exportCsv";   // idem
+import Analytics from "./pages/Analytics";       // crea si no lo tienes
+import { exportarCSV } from "./utils/exportCsv";  // crea si no lo tienes
 
 type View = "registro" | "graficos" | "exportar";
 
