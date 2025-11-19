@@ -31,38 +31,45 @@ body {
   border-bottom: 1px solid var(--card-border);
 }
 
-/* ⬇️ LOGO ARRIBA y MENÚ DEBAJO, TODO CENTRADO */
-.app-nav-inner {
-  display: flex;
-  flex-direction: column;      /* apila logo y menú */
-  align-items: center;         /* centra horizontal */
-  justify-content: center;
-  gap: 8px;                    /* espacio entre logo y menú */
-  padding: 10px 0 12px;
-  height: auto;                /* ya no fijamos 64px */
+/* Topbar sticky */
+.app-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--card-border);
 }
 
-.brand {
-  position: static;            /* quitamos absolute */
+/* LOGO ARRIBA + MENÚ DEBAJO, TODO CENTRADO */
+.app-nav-inner{
+  display: flex;
+  flex-direction: column;   /* <- CLAVE */
+  align-items: center;      /* <- CLAVE */
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0;
+  height: auto;
+}
+
+.brand{
+  position: static;         /* asegúrate de NO tener absolute */
   transform: none;
   margin: 0;
   font-weight: 800;
   font-size: 22px;
   letter-spacing: .2px;
+  text-align: center;       /* <- por si acaso */
 }
 
-.nav-group {
+.nav-group{
   display: flex;
   gap: 8px;
-  justify-content: center;     /* centra los botones */
-  margin: 0;                   /* sin empujes laterales */
+  justify-content: center;  /* centra los botones */
+  margin: 0;
 }
+.nav-btn{ padding:8px 12px; border-radius:999px; border:1px solid #e5e7eb; background:#fff; font-weight:600; }
+.nav-btn[aria-current="page"]{ background: var(--primary-100); border-color:#c7d2fe; }
 
-.nav-btn {
-  padding: 8px 12px; border-radius: 999px;
-  border: 1px solid #e5e7eb; background: #fff; font-weight: 600;
-}
-.nav-btn[aria-current="page"] { background: var(--primary-100); border-color: #c7d2fe; }
+
 
 
 /* Tarjetas centradas */
