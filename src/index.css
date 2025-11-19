@@ -29,15 +29,29 @@ body {
   backdrop-filter: saturate(180%) blur(10px);
   border-bottom: 1px solid var(--card-border);
 }
-.app-nav-inner { height: 64px; display: flex; align-items: center; gap: 12px; }
-.brand { margin: 0; font-weight: 800; font-size: 20px; letter-spacing: .2px; }
-
-.nav-group { display: flex; gap: 8px; margin-left: 8px; }
+.app-nav-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  /* CLAVES PARA CENTRAR EL MENÚ */
+  justify-content: center;     /* centra el contenido */
+  position: relative;          /* para posicionar el logo */
+}
+.brand {
+  margin: 0; font-weight: 800; font-size: 20px; letter-spacing: .2px;
+  /* fijamos el logo a la izquierda sin afectar al centrado del menú */
+  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+}
+.nav-group { 
+  display: flex; gap: 8px; 
+  margin-left: 0;              /* quita empuje hacia la derecha */
+}
 .nav-btn {
   padding: 8px 12px; border-radius: 999px;
   border: 1px solid #e5e7eb; background: #fff; font-weight: 600;
 }
 .nav-btn[aria-current="page"] { background: var(--primary-100); border-color: #c7d2fe; }
+
 
 /* Tarjetas centradas */
 .card {
