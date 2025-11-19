@@ -1,8 +1,8 @@
 import { useState } from "react";
 import RegistroHumor from "./components/RegistroHumor";
 import NavBar from "./components/NavBar";
-import Analytics from "./pages/Analytics";
-import { exportarCSV } from "./utils/exportCsv";
+import Analytics from "./pages/Analytics";         // si aún no lo tienes, crea después
+import { exportarCSV } from "./utils/exportCsv";   // idem
 
 type View = "registro" | "graficos" | "exportar";
 
@@ -16,56 +16,36 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f9fafb", paddingBottom: 40 }}>
+    <div className="app-shell">
       <NavBar view={view} onNavigate={setView} />
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "24px 20px" }}>
-        {mensajeExito && (
-          <div
-            style={{
-              background: "#d1fae5",
-              color: "#065f46",
-              padding: 16,
-              borderRadius: 8,
-              marginBottom: 24,
-              textAlign: "center",
-              fontWeight: 500,
-            }}
-          >
-            {mensajeExito}
-          </div>
-        )}
+      <main className="app-main">
+        <div className="container" style={{ display: "grid", gap: 24 }}>
+          {mensajeExito && <div className="banner-success">{mensajeExito}</div>}
 
-        {view === "registro" && (
-          <div style={{ background: "white", borderRadius: 12, boxShadow: "0 1px 3px rgba(0,0,0,0.1)", padding: 32 }}>
-            <RegistroHumor alGuardar={manejarGuardado} />
-          </div>
-        )}
+          {view === "registro" && (
+            <section className="card" style={{ maxWidth: 800, margin: "0 auto", width: "100%" }}>
+              <RegistroHumor alGuardar={manejarGuardado} />
+            </section>
+          )}
 
-        {view === "graficos" && <Analytics />}
+          {view === "graficos" && (
+            <section className="card" style={{ width: "100%" }}>
+              <Analytics />
+            </section>
+          )}
 
-        {view === "exportar" && (
-          <div style={{ background: "white", borderRadius: 12, padding: 32 }}>
-            <h2 style={{ marginBottom: 12 }}>Exportar datos</h2>
-            <p style={{ marginBottom: 12 }}>
-              Descarga tu historial en CSV para compartirlo con profesionales o guardarlo.
-            </p>
-            <button
-              onClick={exportarCSV}
-              style={{
-                padding: "10px 14px",
-                borderRadius: 10,
-                border: "1px solid #2563eb",
-                background: "#2563eb",
-                color: "white",
-                fontWeight: 700,
-              }}
-            >
-              Descargar CSV
-            </button>
-          </div>
-        )}
-      </div>
+          {view === "exportar" && (
+            <section className="card" style={{ maxWidth: 720, margin: "0 auto", width: "100%" }}>
+              <h2 style={{ marginTop: 0 }}>Exportar datos</h2>
+              <p style={{ marginBottom: 16 }}>
+                Descarga tu historial en CSV para compartirlo o guardarlo.
+              </p>
+              <button className="btn" onClick={exportarCSV}>Descargar CSV</button>
+            </section>
+          )}
+        </div>
+      </main>
     </div>
   );
 }
