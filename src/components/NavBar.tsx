@@ -1,14 +1,12 @@
 import React from "react";
 type View = "registro" | "graficos" | "exportar";
 
-export default function NavBar({
-  view,
-  onNavigate,
-}: { view: View; onNavigate: (v: View) => void }) {
+export default function NavBar({ view, onNavigate }:{
+  view: View; onNavigate: (v: View) => void;
+}) {
   const Item = ({ id, label }: { id: View; label: string }) => (
-    <button className="nav-btn" onClick={() => onNavigate(id)} aria-current={view === id ? "page" : undefined}>
-      {label}
-    </button>
+    <button className="nav-btn" onClick={() => onNavigate(id)}
+            aria-current={view === id ? "page" : undefined}>{label}</button>
   );
 
   return (
