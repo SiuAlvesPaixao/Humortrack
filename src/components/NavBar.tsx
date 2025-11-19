@@ -12,7 +12,7 @@ export default function NavBar({ view, onNavigate }:{
   return (
     <header className="app-nav">
       <div className="container app-nav-inner">
-        <h1 className="brand">HumorTracker</h1>
+        <h1 className="brand">HumorTracker:)(</h1>
         <nav className="nav-group">
           <Item id="registro" label="Registro" />
           <Item id="graficos" label="Gráficos" />
