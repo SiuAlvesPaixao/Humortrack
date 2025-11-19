@@ -6,31 +6,31 @@ export default function MoodLegend() {
       icon: "😭",
       title: "1 — Tormenta",
       desc:
-        "Desbordado/a: tristeza, ansiedad o rabia. Frena, pide apoyo y cuídate sin exigirte nada.",
+        "Desbordado/a: tristeza, ansiedad o rabia.",
     },
     {
       icon: "😟",
       title: "2 — Bajo",
       desc:
-        "Decaimiento o irritabilidad. Me cuesta arrancar. Prioridad: aire, agua, descanso y algo sencillo.",
+        "Decaimiento o irritabilidad. Me cuesta arrancar.",
     },
     {
       icon: "😐",
       title: "3 — Neutro",
       desc:
-        "Estable. No es gran día ni mal día. Sostengo lo importante sin prisa y sin castigo.",
+        "Estable. No es gran día ni mal día.",
     },
     {
       icon: "🙂",
       title: "4 — Ligero",
       desc:
-        "Bienestar suave. Calma y pequeñas alegrías. Buen momento para organizarme y agradecer.",
+        "Bienestar suave. Calma y pequeñas alegrías.",
     },
     {
       icon: "😁",
       title: "5 — En alto",
       desc:
-        "Energía y conexión. Ganas de compartir. Día para celebrar y recargar reservas.",
+        "Energía y conexión. Ganas de compartir.",
     },
   ];
 
