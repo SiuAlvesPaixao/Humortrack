@@ -3,7 +3,7 @@ import React from "react";
 export default function MoodLegend() {
   const items = [
     {
-      icon: "😭",
+      icon: "😢",
       title: "1 — Tormenta",
       desc:
         "Desbordado/a: tristeza, ansiedad o rabia.",
