@@ -1,49 +1,68 @@
 import React from "react";
 
-type Item = { icon: string; title: string; desc: string };
-
-const items: Item[] = [
-  {
-    icon: "😭",
-    title: "1 — Tormenta",
-    desc:
-      "Me siento desbordado/a: tristeza, ansiedad o rabia. Hoy toca frenar, pedir apoyo y cuidarme sin exigirme nada.",
-  },
-  {
-    icon: "😟",
-    title: "2 — Bajo",
-    desc:
-      "Estoy decaído/a o irritable. Me cuesta arrancar y concentrarme. Necesito algo sencillo: aire, agua, descanso.",
-  },
-  {
-    icon: "😐",
-    title: "3 — Neutro",
-    desc:
-      "Estoy estable. No es un gran día ni un mal día. Puedo sostener lo que venga y hacer lo importante sin prisa.",
-  },
-  {
-    icon: "🙂",
-    title: "4 — Ligero",
-    desc:
-      "Me siento bien: hay calma y pequeñas alegrías. Avanzo con claridad, me organizo y agradezco lo que sí hay.",
-  },
-  {
-    icon: "😁",
-    title: "5 — En alto",
-    desc:
-      "Energía alta y buen ánimo. Me siento conectado/a y con ganas de compartir. Un día para celebrar y cargar reservas.",
-  },
-];
-
 export default function MoodLegend() {
+  const items = [
+    {
+      icon: "😭",
+      title: "1 — Tormenta",
+      desc:
+        "Desbordado/a: tristeza, ansiedad o rabia. Frena, pide apoyo y cuídate sin exigirte nada.",
+    },
+    {
+      icon: "😟",
+      title: "2 — Bajo",
+      desc:
+        "Decaimiento o irritabilidad. Me cuesta arrancar. Prioridad: aire, agua, descanso y algo sencillo.",
+    },
+    {
+      icon: "😐",
+      title: "3 — Neutro",
+      desc:
+        "Estable. No es gran día ni mal día. Sostengo lo importante sin prisa y sin castigo.",
+    },
+    {
+      icon: "🙂",
+      title: "4 — Ligero",
+      desc:
+        "Bienestar suave. Calma y pequeñas alegrías. Buen momento para organizarme y agradecer.",
+    },
+    {
+      icon: "😁",
+      title: "5 — En alto",
+      desc:
+        "Energía y conexión. Ganas de compartir. Día para celebrar y recargar reservas.",
+    },
+  ];
+
   return (
-    <section className="legend">
+    <section
+      style={{
+        marginTop: 12,
+        display: "grid",
+        gap: 12,
+        gridTemplateColumns: "1fr",
+      }}
+      data-testid="mood-legend"
+    >
       {items.map((it) => (
-        <article key={it.title} className="legend-item">
-          <div className="legend-emoji" aria-hidden>{it.icon}</div>
+        <article
+          key={it.title}
+          style={{
+            display: "flex",
+            gap: 12,
+            alignItems: "flex-start",
+            padding: "12px 14px",
+            border: "1px solid #eef2f7",
+            borderRadius: 12,
+            background: "#fff",
+          }}
+        >
+          <div style={{ fontSize: 24, lineHeight: 1, paddingTop: 2 }} aria-hidden>
+            {it.icon}
+          </div>
           <div>
-            <h4 className="legend-title">{it.title}</h4>
-            <p className="legend-desc">{it.desc}</p>
+            <h4 style={{ margin: "0 0 4px", fontWeight: 700 }}>{it.title}</h4>
+            <p style={{ margin: 0, color: "#475569" }}>{it.desc}</p>
           </div>
         </article>
       ))}
