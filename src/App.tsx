@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import RegistroHumor from './components/RegistroHumor';
-import Historial from './components/HistoryChart';
-import { generarDatosEjemplo } from './utils/almacenamiento';
+import Analytics from './pages/Analytics';
+import { generarDatosEjemplo, exportarACSV } from './utils/almacenamiento';
 
 export default function App() {
   const [pantallaActiva, setPantallaActiva] = useState<'registro' | 'graficos' | 'exportar'>('registro');
@@ -75,7 +75,7 @@ export default function App() {
           </div>
         )}
 
-        {pantallaActiva === 'graficos' && <Historial />}
+        {pantallaActiva === 'graficos' && <Analytics />}
 
         {pantallaActiva === 'exportar' && (
           <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center', padding: 40, background: 'white', borderRadius: 12 }}>
@@ -84,10 +84,7 @@ export default function App() {
               Descarga tu historial completo en formato CSV para analizarlo o compartirlo con profesionales.
             </p>
             <button
-              onClick={() => {
-                const { exportarACSV } = require('./utils/almacenamiento');
-                exportarACSV();
-              }}
+              onClick={exportarACSV}
               style={{
                 padding: '14px 32px',
                 background: '#059669',
