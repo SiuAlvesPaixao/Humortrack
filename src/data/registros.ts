@@ -1,22 +1,31 @@
 import dayjs from "dayjs";
 
 export type Registro = {
-  fecha: string;          // YYYY-MM-DD
+  fecha: string;
   nivel: 1|2|3|4|5;
   etiquetas: string[];
   nota?: string;
 };
 
-const KEY = "registrosHumor";
+const KEY = "registros-humor"; // IMPORTANTE: mismo que almacenamiento.ts
 
 export function leerTodos(): Registro[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = localStorage.getItem(KEY);
-    const arr: Registro[] = raw ? JSON.parse(raw) : [];
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    
+    // Convertir de nuestro formato (valorHumor) al formato que espera (nivel)
     return arr
-      .filter(x => x && x.fecha && x.nivel)
-      .sort((a,b) => a.fecha.localeCompare(b.fecha));
+      .filter((x: any) => x && x.fecha && (x.valorHumor || x.nivel))
+      .map((x: any) => ({
+        fecha: x.fecha,
+        nivel: x.valorHumor || x.nivel,
+        etiquetas: x.etiquetas || [],
+        nota: x.nota
+      }))
+      .sort((a, b) => a.fecha.localeCompare(b.fecha));
   } catch { return []; }
 }
 
@@ -24,8 +33,29 @@ export function guardar(reg: Registro) {
   if (typeof window === "undefined") return;
   const todos = leerTodos();
   const i = todos.findIndex(x => x.fecha === reg.fecha);
-  if (i >= 0) todos[i] = reg; else todos.push(reg);
-  localStorage.setItem(KEY, JSON.stringify(todos));
+  
+  // Convertir al formato valorHumor
+  const registroGuardar = {
+    fecha: reg.fecha,
+    valorHumor: reg.nivel,
+    nota: reg.nota || '',
+    etiquetas: reg.etiquetas
+  };
+  
+  if (i >= 0) {
+    todos[i] = reg;
+  } else {
+    todos.push(reg);
+  }
+  
+  const datosGuardar = todos.map(r => ({
+    fecha: r.fecha,
+    valorHumor: r.nivel,
+    nota: r.nota || '',
+    etiquetas: r.etiquetas
+  }));
+  
+  localStorage.setItem(KEY, JSON.stringify(datosGuardar));
 }
 
 export function leerUltimosDias(dias: number): Registro[] {
